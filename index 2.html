@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tia‘s Archive</title>
+
+<!-- Google Font für luxuriöse Handschrift -->
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+
+<style>
+  /* Hintergrund */
+  body {
+    margin: 0;
+    padding: 0;
+    background: url('background.png') no-repeat center center fixed;
+    background-size: cover;
+    font-family: 'Georgia', serif;
+    overflow-x: hidden;
+    position: relative;
+  }
+
+  /* Überschrift */
+  h1 {
+    text-align: center;
+    font-family: 'Great Vibes', cursive;
+    font-size: 5vw;
+    color: gold;
+    text-align: center;
+    margin-top: 50px;
+    font-weight: normal;
+    /* Glanz-Effekt */
+    background: linear-gradient(145deg, #FFD700, #FFC700, #FFB800);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  /* Passwortfeld-Container */
+  .login-container {
+    width: 90%;
+    max-width: 400px;
+    margin: 80px auto;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+  }
+
+  input[type="password"] {
+    padding: 12px 20px;
+    font-size: 16px;
+    border: 4px solid gold;
+    border-radius: 15px;
+    width: 100%;
+    box-sizing: border-box;
+    font-family: 'Georgia', serif;
+    outline: none;
+    background-color: rgba(255, 255, 255, 0.85);
+  }
+
+  input[type="submit"] {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: 4px solid gold;
+    border-radius: 12px;
+    background-color: gold;
+    cursor: pointer;
+    font-family: 'Georgia', serif;
+  }
+
+  /* Galerie-Bilder rund um das Passwortfeld */
+  .gallery {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .gallery img {
+    position: absolute;
+    max-width: 200px;
+    max-height: 200px;
+  }
+
+  /* Beispiel für dynamische Positionierung */
+  .pic1 { top: 20px; left: 10px; }
+  .pic2 { top: 100px; right: 50px; }
+  .pic3 { bottom: 150px; left: 30px; }
+  .pic4 { bottom: 50px; right: 20px; }
+  .pic5 { top: 250px; left: 150px; }
+  .pic6 { top: 300px; right: 180px; }
+  .pic7 { bottom: 200px; left: 250px; }
+
+  /* Glänzende, fliegende Fragezeichen */
+  .question {
+    position: absolute;
+    color: gold;
+    font-size: 12px;
+    animation: float 10s linear infinite;
+    z-index: 3;
+    pointer-events: none;
+  }
+
+  @keyframes float {
+    0% { transform: translateY(100vh) translateX(0) rotate(0deg); opacity: 0; }
+    10% { opacity: 1; }
+    100% { transform: translateY(-50px) translateX(200px) rotate(360deg); opacity: 0; }
+  }
+</style>
+</head>
+
+<body>
+
+<h1>Tia‘s Archive</h1>
+
+<div class="login-container">
+  <form action="archive.html" method="get" onsubmit="return checkPassword()">
+    <input type="password" id="pass" placeholder="Enter the Secret Key" required>
+    <input type="submit" value="Enter">
+  </form>
+</div>
+
+<!-- Bilder rund um das Feld -->
+<div class="gallery">
+  <img src="pic1.png" class="pic1">
+  <img src="pic2.png" class="pic2">
+  <img src="pic3.png" class="pic3">
+  <img src="pic4.png" class="pic4">
+  <img src="pic5.png" class="pic5">
+  <img src="pic6.png" class="pic6">
+  <img src="pic7.png" class="pic7">
+</div>
+
+<!-- Fliegende Fragezeichen -->
+<div id="questions"></div>
+
+<script>
+  // Passwort prüfen
+  function checkPassword() {
+    const pass = document.getElementById('pass').value;
+    if(pass === "SixTimesTia?!06") return true;
+    alert("Wrong password");
+    return false;
+  }
+
+  // Fragezeichen erstellen
+  const questionContainer = document.getElementById('questions');
+  for(let i=0;i<20;i++){
+    const q = document.createElement('div');
+    q.className = 'question';
+    q.style.left = Math.random()*100 + 'vw';
+    q.style.fontSize = (Math.random()*20+10) + 'px';
+    q.textContent = '?';
+    questionContainer.appendChild(q);
+  }
+</script>
+
+</body>
+</html>
